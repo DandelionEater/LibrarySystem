@@ -1,6 +1,9 @@
 package lt.viko.eif.dgenzuras.libraryapp.model;
 
-import javax.persistence.*;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Account class holds information about the account.
@@ -10,13 +13,7 @@ import javax.persistence.*;
  * @see Reader
  */
 
-@Entity
-@Table(name = "account")
-
 public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
 
     private String userName;
@@ -33,11 +30,12 @@ public class Account {
     @Override
     public String toString() {
         return String.format(
-                "\t\tUser name: %s \n" + "\t\tPassword: %s \n",
+                "\n\t\tUser name: %s \n" + "\t\tPassword: %s \n",
                 this.userName,
                 this.password);
     }
 
+    @XmlAttribute(name = "ID")
     public int getId() {
         return id;
     }
@@ -46,6 +44,7 @@ public class Account {
         this.id = id;
     }
 
+    @XmlAttribute(name = "Username")
     public String getUserName() {
         return userName;
     }
@@ -54,6 +53,7 @@ public class Account {
         this.userName = userName;
     }
 
+    @XmlAttribute(name = "Password")
     public String getPassword() {
         return password;
     }

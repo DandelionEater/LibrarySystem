@@ -1,6 +1,9 @@
 package lt.viko.eif.dgenzuras.libraryapp.model;
 
-import javax.persistence.*;
+import javax.naming.Name;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Book class holds information about the book.
@@ -10,13 +13,7 @@ import javax.persistence.*;
  * @see Reader
  */
 
-@Entity
-@Table(name = "book")
-
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
     private String name;
     private String authorName;
@@ -53,6 +50,7 @@ public class Book {
                 this.inStock);
     }
 
+    @XmlAttribute(name = "ID")
     public int getId() {
         return id;
     }
@@ -61,6 +59,7 @@ public class Book {
         this.id = id;
     }
 
+    @XmlAttribute(name = "Name")
     public String getName() {
         return name;
     }
@@ -69,6 +68,7 @@ public class Book {
         this.name = name;
     }
 
+    @XmlAttribute(name = "Author")
     public String getAuthorName() {
         return authorName;
     }
@@ -77,6 +77,7 @@ public class Book {
         this.authorName = authorName;
     }
 
+    @XmlAttribute(name = "ReleaseYear")
     public int getReleaseYear() {
         return releaseYear;
     }
@@ -85,6 +86,7 @@ public class Book {
         this.releaseYear = releaseYear;
     }
 
+    @XmlAttribute(name = "Category")
     public String getCategory() {
         return category;
     }
@@ -93,6 +95,7 @@ public class Book {
         this.category = category;
     }
 
+    @XmlAttribute(name = "InStock")
     public int getInStock() {
         return inStock;
     }

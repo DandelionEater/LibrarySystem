@@ -1,7 +1,11 @@
 package lt.viko.eif.dgenzuras.libraryapp.model;
 
-import javax.persistence.*;
-import javax.security.auth.Subject;
+
+import sun.text.resources.cldr.ti.FormatData_ti_ER;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,21 +18,15 @@ import java.util.List;
  * @see Book
  */
 
-@Entity
-@Table(name = "reader")
+@XmlRootElement
 public class Reader {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private int id;
     private String firstName;
     private String lastName;
     private int code;
 
-    @OneToOne(targetEntity = Account.class, cascade = CascadeType.ALL)
     private Account account;
 
-    @OneToMany(targetEntity = Book.class, cascade = CascadeType.ALL)
     private List<Book> bookList = new ArrayList<>();
 
     public Reader(int id, String firstName, String lastName, int code) {
@@ -63,42 +61,47 @@ public class Reader {
         return result;
     }
 
+    @XmlAttribute(name = "ID")
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id){
         this.id = id;
     }
 
+
+    @XmlAttribute(name = "FirstName")
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName){
         this.firstName = firstName;
     }
 
+    @XmlAttribute(name = "LastName")
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName){
         this.lastName = lastName;
     }
 
+    @XmlAttribute(name = "Code")
     public int getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(int code){
         this.code = code;
     }
 
+    @XmlElement(name = "BookList")
     public List<Book> getBookList() { return bookList; }
 
-    public void setBookList(List<Book> bookList) { this.bookList = bookList; }
-
+    @XmlElement(name = "Account")
     public Account getAccount() { return account; }
 
     public void setAccount(Account account) { this.account = account; }
